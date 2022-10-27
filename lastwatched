@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# find your last watched (accessed) video in a folder
+
+MAX_TIME=0
+FILE_NAME=""
+
+for file in *.mkv
+do
+    UNIX_TIME=$(stat -c%X "${file}")
+    HUMAN_TIME=$(stat -c%x "${file}")
+    if [[ $UNIX_TIME -gt $MAX_TIME ]]; then
+        MAX_TIME=$UNIX_TIME
+        FILE_NAME="$file"
+    fi
+done
+
+echo $FILE_NAME
+echo $HUMAN_TIME
