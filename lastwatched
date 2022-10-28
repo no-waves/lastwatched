@@ -10,7 +10,7 @@ do
     if [[ $UNIX_TIME -gt $MAX_TIME ]]; then
         MAX_TIME=$UNIX_TIME
         FILE_NAME="$file"
-        HUMAN_TIME=$(stat -c%x "${file}")
+        HUMAN_TIME=$(stat -c%x "${file}"| sed -E 's/\..+//')
     fi
 done
 
